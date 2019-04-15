@@ -35,6 +35,7 @@
             this.stop = new System.Windows.Forms.Button();
             this.star = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.penobs = new System.Windows.Forms.Button();
             this.mouse = new System.Windows.Forms.Button();
             this.goalY = new System.Windows.Forms.TextBox();
             this.beginY = new System.Windows.Forms.TextBox();
@@ -53,9 +54,11 @@
             this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Location = new System.Drawing.Point(29, 37);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(550, 550);
+            this.panel1.Size = new System.Drawing.Size(500, 500);
             this.panel1.TabIndex = 9;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
+            this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
+            this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
             // groupBox2
             // 
@@ -63,9 +66,9 @@
             this.groupBox2.Controls.Add(this.delete);
             this.groupBox2.Controls.Add(this.stop);
             this.groupBox2.Controls.Add(this.star);
-            this.groupBox2.Location = new System.Drawing.Point(618, 290);
+            this.groupBox2.Location = new System.Drawing.Point(609, 330);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(223, 243);
+            this.groupBox2.Size = new System.Drawing.Size(243, 195);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -78,10 +81,11 @@
             this.clear.TabIndex = 3;
             this.clear.Text = "清除所有";
             this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
             // 
             // delete
             // 
-            this.delete.Location = new System.Drawing.Point(34, 128);
+            this.delete.Location = new System.Drawing.Point(24, 128);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(75, 23);
             this.delete.TabIndex = 2;
@@ -105,9 +109,11 @@
             this.star.TabIndex = 0;
             this.star.Text = "开始";
             this.star.UseVisualStyleBackColor = true;
+            this.star.Click += new System.EventHandler(this.star_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.penobs);
             this.groupBox1.Controls.Add(this.mouse);
             this.groupBox1.Controls.Add(this.goalY);
             this.groupBox1.Controls.Add(this.beginY);
@@ -116,18 +122,28 @@
             this.groupBox1.Controls.Add(this.obstacle);
             this.groupBox1.Controls.Add(this.goal);
             this.groupBox1.Controls.Add(this.begin);
-            this.groupBox1.Location = new System.Drawing.Point(618, 30);
+            this.groupBox1.Location = new System.Drawing.Point(609, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 235);
+            this.groupBox1.Size = new System.Drawing.Size(243, 274);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // penobs
+            // 
+            this.penobs.Location = new System.Drawing.Point(126, 230);
+            this.penobs.Name = "penobs";
+            this.penobs.Size = new System.Drawing.Size(90, 23);
+            this.penobs.TabIndex = 9;
+            this.penobs.Text = "画笔障碍";
+            this.penobs.UseVisualStyleBackColor = true;
+            this.penobs.Click += new System.EventHandler(this.penobs_Click);
             // 
             // mouse
             // 
             this.mouse.Location = new System.Drawing.Point(24, 174);
             this.mouse.Name = "mouse";
-            this.mouse.Size = new System.Drawing.Size(75, 23);
+            this.mouse.Size = new System.Drawing.Size(193, 23);
             this.mouse.TabIndex = 8;
             this.mouse.Text = "指针";
             this.mouse.UseVisualStyleBackColor = true;
@@ -163,12 +179,13 @@
             // 
             // obstacle
             // 
-            this.obstacle.Location = new System.Drawing.Point(127, 174);
+            this.obstacle.Location = new System.Drawing.Point(24, 230);
             this.obstacle.Name = "obstacle";
-            this.obstacle.Size = new System.Drawing.Size(75, 23);
+            this.obstacle.Size = new System.Drawing.Size(96, 23);
             this.obstacle.TabIndex = 3;
-            this.obstacle.Text = "障碍物";
+            this.obstacle.Text = "随机障碍";
             this.obstacle.UseVisualStyleBackColor = true;
+            this.obstacle.Click += new System.EventHandler(this.obstacle_Click);
             // 
             // goal
             // 
@@ -194,7 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 616);
+            this.ClientSize = new System.Drawing.Size(864, 567);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -224,6 +241,7 @@
         private System.Windows.Forms.TextBox beignX;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button mouse;
+        private System.Windows.Forms.Button penobs;
     }
 }
 
