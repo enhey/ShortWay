@@ -97,6 +97,7 @@
             this.star.TabIndex = 0;
             this.star.Text = "开始";
             this.star.UseVisualStyleBackColor = true;
+            this.star.Click += new System.EventHandler(this.Star_Click);
             // 
             // groupBox1
             // 
@@ -186,14 +187,13 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Snow;
+            this.pictureBox1.Image = global::shortWay.Properties.Resources.MapBackground;
             this.pictureBox1.Location = new System.Drawing.Point(30, 30);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(500, 500);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.mouse_Click);
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
             // Form1
             // 

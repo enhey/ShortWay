@@ -10,13 +10,13 @@ namespace shortWay
 {
     class Obstacle
     {
-        PictureBox picture;
+        Bitmap picture;
         Graphics graphic;
         Brush brush = new SolidBrush(Color.Black);
-        public Obstacle(PictureBox picture)
+        public Obstacle(Bitmap picture)
         {
             this.picture = picture;
-            graphic = this.picture.CreateGraphics();
+            graphic = Graphics.FromImage((Image)picture);
         }
         public void getRandom()
         {
@@ -28,7 +28,7 @@ namespace shortWay
                 case 0: default0(); break;
                 case 1:default1();break;
             }
-
+            graphic.Dispose();
         }
         public void default0()
         {
@@ -43,6 +43,7 @@ namespace shortWay
             graphic.FillRectangle(brush, r);
 
             graphic.FillEllipse(brush, 210, 200, 100, 100);
+
         }
 
         public void default1()
@@ -66,7 +67,6 @@ namespace shortWay
             graphic.FillRectangle(brush, r);
             r.Location = new Point(50, 260);
             graphic.FillRectangle(brush, r);
-
             r.Size = new Size(40, 250);
             r.Location = new Point(260, 50);
             graphic.FillRectangle(brush, r);
