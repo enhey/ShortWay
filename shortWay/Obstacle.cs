@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,7 +42,6 @@ namespace shortWay
             graphic.FillRectangle(brush, r);
             r.Location = new Point(120, 330);
             graphic.FillRectangle(brush, r);
-
             graphic.FillEllipse(brush, 210, 200, 100, 100);
 
         }

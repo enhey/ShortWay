@@ -27,6 +27,7 @@ namespace shortWay
         Brush wipe;
         Pen pen = new Pen(Color.Black, 10);
         Bitmap backBit;
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -108,11 +109,10 @@ namespace shortWay
         }
 
         private void obstacle_Click(object sender, EventArgs e)//设置随机障碍物
-        {
+        {            
             clear_Click(sender, e);
             Obstacle ob = new Obstacle(this.backBit);
             ob.getRandom();
-
         }
 
         private void clear_Click(object sender, EventArgs e)
@@ -127,10 +127,16 @@ namespace shortWay
 
         private void Star_Click(object sender, EventArgs e)
         {
-            RRT find = new RRT(backBit, pBegin, pGoal);
-            //Thread thread = new Thread(find.findWay);
-            //thread.Start();
-            find.findWay();
+            RRT find = new RRT(pictureBox1, pBegin, pGoal);
+            thread = new Thread(find.findWay);
+            thread.Start();
+           // find.findWay();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // System.Environment.Exit(0);
+            Application.ExitThread();
         }
     }
 }
