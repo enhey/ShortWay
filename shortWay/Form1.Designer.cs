@@ -88,6 +88,7 @@
             this.stop.TabIndex = 1;
             this.stop.Text = "停止";
             this.stop.UseVisualStyleBackColor = true;
+            this.stop.Click += new System.EventHandler(this.Stop_Click);
             // 
             // star
             // 

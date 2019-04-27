@@ -22,12 +22,10 @@ namespace shortWay
         public List<Point> pList = new List<Point>();
         public short flag = 0;
         private Graphics graphic;//画板对象
-        private Boolean[,] block;//标记地图障碍物情况
         Boolean mdown = false;
         Brush wipe;
         Pen pen = new Pen(Color.Black, 10);
         Bitmap backBit;
-        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -128,15 +126,21 @@ namespace shortWay
         private void Star_Click(object sender, EventArgs e)
         {
             RRT find = new RRT(pictureBox1, pBegin, pGoal);
-            thread = new Thread(find.findWay);
-            thread.Start();
-           // find.findWay();
+            //thread = new Thread(find.findWay);
+            //thread.Start();
+            
+            find.findWay();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // System.Environment.Exit(0);
-            Application.ExitThread();
+             //System.Environment.Exit(0);
+            //Application.ExitThread();
+        }
+
+        private void Stop_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
