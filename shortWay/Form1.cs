@@ -22,10 +22,10 @@ namespace shortWay
         public List<Point> pList = new List<Point>();
         public short flag = 0;
         private Graphics graphic;//画板对象
-        Boolean mdown = false;
         Brush wipe;
         Pen pen = new Pen(Color.Black, 10);
         Bitmap backBit;
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -67,10 +67,6 @@ namespace shortWay
                 default: break;
             }
         }
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            mdown = false;
-        }
         private void setBegin(MouseEventArgs e)//起点标点
         {
             if(backBit.GetPixel(e.X,e.Y).Name=="ff000000")
@@ -85,6 +81,7 @@ namespace shortWay
             pBegin = e.Location;
             Brush bush = new SolidBrush(Color.Green);
             graphic.FillEllipse(bush, e.X, e.Y, 10, 10);
+            //pictureBox1.Invalidate();
             pictureBox1.Image = backBit;
             graphic.Dispose();
         }
@@ -102,6 +99,7 @@ namespace shortWay
             pGoal = e.Location;
             Brush bush = new SolidBrush(Color.Red);
             graphic.FillEllipse(bush, e.X, e.Y, 10, 10);
+           // pictureBox1.Invalidate();
             pictureBox1.Image = backBit;
             graphic.Dispose();
         }
@@ -128,7 +126,7 @@ namespace shortWay
             RRT find = new RRT(pictureBox1, pBegin, pGoal);
             //thread = new Thread(find.findWay);
             //thread.Start();
-            
+            //thread.Join();
             find.findWay();
         }
 

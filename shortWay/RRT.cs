@@ -27,28 +27,37 @@ namespace shortWay
         PictureBox picturebox;
         Image image;
         Graphics graphics;
-        Pen route = new Pen(Color.Yellow, 3);
+        Pen connetPen = new Pen(Color.Yellow, 3);
         private Point pBegin;
         private Point pGoal;
         Point newNode = new Point();
-        Bitmap map;//里边只画有障碍物和起点终点
+        Bitmap map;
         List<Node> allNode = new List<Node>();
+        List<Node> optNode = new List<Node>();
         const int length = 30;
         public RRT(PictureBox picturebox, Point b, Point g)
         {
             this.picturebox = picturebox;
             image = picturebox.Image;
             map = (Bitmap)image;
-            graphics = Graphics.FromImage(image);
+            graphics = Graphics.FromImage((Image)map);
             this.pBegin = b; this.pGoal = g;
             Node beginPoint = new Node(null, pBegin);
             allNode.Add(beginPoint);
         }
         public void findWay()
         {
-            //graphics.FillEllipse(new SolidBrush(Color.Yellow), 300, 300, 100, 100);
-            //picturebox.Image = image   
             double GoadLenght;
+            //GoadLenght = Math.Sqrt((allNode.Last().data.X - pGoal.X) * (allNode.Last().data.X - pGoal.X) + (allNode.Last().data.Y - pGoal.Y) * (allNode.Last().data.Y - pGoal.Y));
+            //if (GoadLenght < 30)
+            //{
+            //    Node goalPoint = new Node(allNode.Last(), pGoal);
+            //    allNode.Add(goalPoint);
+            //    connet(goalPoint, pGoal);
+            //    drawWay();
+            //    picturebox.Image = map;
+            //    return;
+            //}
             //int i = 50;
             while (true)
             {
@@ -58,18 +67,20 @@ namespace shortWay
                 {
                     connet(nearest, random);
                     GoadLenght = Math.Sqrt((newNode.X - pGoal.X) * (newNode.X - pGoal.X) + (newNode.Y - pGoal.Y) * (newNode.Y - pGoal.Y));
+                    //GoadLenght = Math.Sqrt((allNode.Last().data.X - pGoal.X) * (allNode.Last().data.X - pGoal.X) + (allNode.Last().data.Y - pGoal.Y) * (allNode.Last().data.Y - pGoal.Y));
                     if (GoadLenght < 30)
                     {
-                        Node goalPoint=new Node(allNode.Last(),pGoal);
+                        Node goalPoint = new Node(allNode.Last(), pGoal);
                         allNode.Add(goalPoint);
                         connet(goalPoint, pGoal);
                         drawWay();
+                       // picturebox.Invalidate();
+                        picturebox.Image = map;
                         break;
                     }
 
-                    //Thread.Sleep(50);
                 }
-   //             i--;
+                //             i--;
             }
         }
         public Point randomNode()//图中产生随机点
@@ -84,8 +95,6 @@ namespace shortWay
             {
                 randomNode.X = r.Next(0, 500);
                 randomNode.Y = r.Next(0, 500);
-                //if(map.GetPixel(p.X,p.Y).Name!="fffffafa"&& !allNode.Contains(p))
-                //allNode.Add(p);
             }
             return randomNode;
         }
@@ -110,7 +119,7 @@ namespace shortWay
         {
             double theta;
             // theta = Math.Atan(Math.Abs((random.Y - nearest.data.Y) / (random.X - nearest.data.X)));
-            theta = Math.Atan2((random.Y - nearest.data.Y) , (random.X - nearest.data.X));
+            theta = Math.Atan2((random.Y - nearest.data.Y), (random.X - nearest.data.X));
             int dtx = (int)(length * Math.Cos(theta)), dty = (int)(length * Math.Sin(theta));
             newNode.X = nearest.data.X + dtx;
             newNode.Y = nearest.data.Y + dty;
@@ -127,36 +136,65 @@ namespace shortWay
         }
         public void connet(Node nearest, Point random)
         {
-            // newNode = new Point();
-            //double theta;
-            //theta = Math.Atan2((random.Y - nearest.data.Y) , (random.X - nearest.data.X));
-            //int dtx = (int)(length * Math.Cos(theta)), dty = (int)(length * Math.Sin(theta));
-            //newNode.X = nearest.data.X + dtx;
-            //newNode.Y = nearest.data.Y + dty;
-            //for (int i = 1; i <= 6; i++)
-            //{
-            //    if (map.GetPixel((nearest.data.X + dtx / 6 * i), (nearest.data.Y + dty / 6 * i)).Name == "ff000000")
-            //    {
-            //        return;
-            //    }
-            //}
-            graphics.DrawLine(route, nearest.data, newNode);
-            //map=(Bitmap)image;
-            picturebox.Image = image;
+            graphics.DrawLine(connetPen, nearest.data, newNode);
+            //picturebox.Invalidate();
+            //picturebox.Image = (Image)map;
+            picturebox.Refresh();
             allNode.Add(new Node(nearest, newNode));
-            Thread.Sleep(30);
+           Thread.Sleep(100);
         }
 
         public void drawWay()
         {
-            Node temp=allNode.Last();
-            
-            while(temp.pre!=null)
+            Node temp = allNode.Last();
+            Pen firPen = new Pen(Color.Blue, 5);
+            while (temp.pre != null)
             {
-                graphics.DrawLine(new Pen(Color.Blue, 5), temp.data, temp.pre.data);
+                graphics.DrawLine(firPen, temp.data, temp.pre.data);
+                optNode.Add(temp);
                 temp = temp.pre;
+            }
+            optNode.Add(temp.pre);
+        }
+
+        public void optimize()
+        {
+            Pen opPen = new Pen(Color.Pink, 5);
+            Node back = optNode.First();
+            while (back.pre == null)
+            {
+                Node front;
+                for (int i = optNode.Count - 1; i >= 0; i--)
+                {
+                    front = optNode[i];
+                    if (opConnet(front, back))
+                    {
+                        graphics.DrawLine(opPen, front.data, back.data);
+                        back = front;
+                        break;
+                    }
+                }
             }
         }
 
+        public Boolean opConnet(Node nearest, Node random)//以一个阀值的长度连接radomNode和nearest
+        {
+            //    double theta;
+            //    // theta = Math.Atan(Math.Abs((random.Y - nearest.data.Y) / (random.X - nearest.data.X)));
+            //    theta = Math.Atan2((random.Y - nearest.data.Y), (random.X - nearest.data.X));
+            //    int dtx = (int)(length * Math.Cos(theta)), dty = (int)(length * Math.Sin(theta));
+            //    newNode.X = nearest.data.X + dtx;
+            //    newNode.Y = nearest.data.Y + dty;
+            //    if (newNode.X > 500 || newNode.Y > 500 || newNode.X < 0 || newNode.Y < 0)
+            //        return false;
+            //    for (int i = 1; i <= 6; i++)
+            //    {
+            //        if (map.GetPixel((nearest.data.X + (dtx / 6) * i), (nearest.data.Y + (dty / 6) * i)).Name == "ff000000")
+            //        {
+            //            return false;
+            //        }
+            //    }
+            return true;
+        }
     }
 }
