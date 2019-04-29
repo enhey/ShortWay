@@ -43,6 +43,8 @@
             this.goal = new System.Windows.Forms.Button();
             this.begin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBoxX = new System.Windows.Forms.TextBox();
+            this.textBoxY = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -195,12 +197,31 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseMove);
+            // 
+            // textBoxX
+            // 
+            this.textBoxX.Enabled = false;
+            this.textBoxX.Location = new System.Drawing.Point(761, 541);
+            this.textBoxX.Name = "textBoxX";
+            this.textBoxX.Size = new System.Drawing.Size(45, 25);
+            this.textBoxX.TabIndex = 9;
+            // 
+            // textBoxY
+            // 
+            this.textBoxY.Enabled = false;
+            this.textBoxY.Location = new System.Drawing.Point(812, 541);
+            this.textBoxY.Name = "textBoxY";
+            this.textBoxY.Size = new System.Drawing.Size(45, 25);
+            this.textBoxY.TabIndex = 10;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 567);
+            this.Controls.Add(this.textBoxY);
+            this.Controls.Add(this.textBoxX);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -212,6 +233,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -232,6 +254,8 @@
         private System.Windows.Forms.TextBox beignX;
         private System.Windows.Forms.Button mouse;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBoxX;
+        private System.Windows.Forms.TextBox textBoxY;
     }
 }
 

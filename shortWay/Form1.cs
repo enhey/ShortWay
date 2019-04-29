@@ -140,5 +140,11 @@ namespace shortWay
         {
             
         }
+
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            textBoxX.Text = e.X.ToString();
+            textBoxY.Text = e.Y.ToString();
+        }
     }
 }
