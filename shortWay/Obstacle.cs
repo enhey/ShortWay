@@ -31,6 +31,7 @@ namespace shortWay
             }
             graphic.Dispose();
         }
+        //赖志卿
         public void default0()
         {
             Rectangle r = new Rectangle();

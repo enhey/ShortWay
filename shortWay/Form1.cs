@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//赖志卿
 namespace shortWay
 {
     public partial class Form1 : Form
@@ -120,7 +120,7 @@ namespace shortWay
             pictureBox1.Image = backBit;
             graphic.Dispose();
         }
-
+        //赖志卿
         private void Star_Click(object sender, EventArgs e)
         {
             RRT find = new RRT(pictureBox1, pBegin, pGoal);

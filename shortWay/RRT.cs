@@ -87,8 +87,8 @@ namespace shortWay
             }
             else
             {
-                randomNode.X = r.Next(0, 500);
-                randomNode.Y = r.Next(0, 500);
+                randomNode.X = r.Next(3, 497);
+                randomNode.Y = r.Next(3, 497);
             }
             return randomNode;
         }
@@ -117,7 +117,7 @@ namespace shortWay
             int dtx = (int)(length * Math.Cos(theta)), dty = (int)(length * Math.Sin(theta));
             newNode.X = nearest.data.X + dtx;
             newNode.Y = nearest.data.Y + dty;
-            if (newNode.X > 500 || newNode.Y > 500 || newNode.X < 0 || newNode.Y < 0)
+            if (newNode.X > 497 || newNode.Y > 497 || newNode.X < 3 || newNode.Y < 3)
                 return false;
             for (int i = 1; i <= 6; i++)
             {
@@ -153,7 +153,7 @@ namespace shortWay
 
         public void optimize()
         {
-            Pen opPen = new Pen(Color.Pink, 5);
+            Pen opPen = new Pen(Color.BlueViolet, 5);
             Node back = optNode.First();
             while (back.pre != null)
             {
