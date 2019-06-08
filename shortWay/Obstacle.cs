@@ -11,6 +11,7 @@ namespace shortWay
 {
     class Obstacle
     {
+        PictureBox picturebox;
         Bitmap picture;
         Graphics graphic;
         Brush brush = new SolidBrush(Color.Black);
@@ -23,11 +24,14 @@ namespace shortWay
         {
             int num;
             Random r = new Random();
-            num = r.Next(0, 2);
+            num = r.Next(0, 5);
             switch (num)
             {
                 case 0: default0(); break;
                 case 1:default1();break;
+                case 2:default2();break;
+                case 3: default3(); break;
+                case 4: default4(); break;
             }
             graphic.Dispose();
         }
@@ -44,7 +48,6 @@ namespace shortWay
             r.Location = new Point(120, 330);
             graphic.FillRectangle(brush, r);
             graphic.FillEllipse(brush, 210, 200, 100, 100);
-
         }
 
         public void default1()
@@ -73,9 +76,39 @@ namespace shortWay
             graphic.FillRectangle(brush, r);
 
         }
-        public void wangzheMap()
+        public void default2()
         {
+            Point p1 = new Point(200, 15);
+            Point p2 = new Point(135, 70);
+            Point p3 = new Point(265, 70);
+            Point[] pntArr = { p1, p2, p3 };
+            graphic.FillPolygon(Brushes.Black, pntArr);
 
+            //画矩形
+            Brush brush = new SolidBrush(Color.Black);
+            graphic.FillRectangle(brush, 160, 70, 80, 190);
+
+            Point pa = new Point(160, 200);
+            Point pb = new Point(160, 260);
+            Point pc = new Point(100, 260);
+            Point[] pt = { pa, pb, pc };
+            Point pd = new Point(240, 200);
+            Point pe = new Point(240, 260);
+            Point pf = new Point(300, 260);
+            Point[] pt1 = { pd, pe, pf };
+            graphic.FillPolygon(Brushes.Black, pt);
+            graphic.FillPolygon(Brushes.Black, pt1);
+
+        }
+        public void default3()
+        {
+            Bitmap bitmap = new Bitmap(@"..\..\Resources\timg1.jpg");
+            graphic.DrawImage(bitmap,0,0);
+        }
+        public void default4()
+        {
+            Bitmap bitmap = new Bitmap(@"..\..\Resources\map4.png");
+            graphic.DrawImage(bitmap, 0, 0);
         }
     }
 }

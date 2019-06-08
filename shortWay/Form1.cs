@@ -25,21 +25,22 @@ namespace shortWay
         Brush wipe;
         Pen pen = new Pen(Color.Black, 10);
         Bitmap backBit;
-        Thread thread;
         public Form1()
         {
             InitializeComponent();
+            PictureBox.CheckForIllegalCrossThreadCalls = false;
             innit();
         }
         private void innit()
         {
+            comboBox1.SelectedIndex = 0;
             backBit = new Bitmap(pictureBox1.ClientRectangle.Width, pictureBox1.ClientRectangle.Height);
             pictureBox1.DrawToBitmap(backBit, pictureBox1.ClientRectangle);
             pictureBox1.Image = (Image)backBit;
             //graphic = Graphics.FromImage((Image)backBit);
             pBegin = p;
             pGoal = p;
-            wipe = new SolidBrush(Color.Snow);        
+            wipe = new SolidBrush(Color.Snow);
         }
         private void begin_Click(object sender, EventArgs e)//触发起点标点
         {
@@ -123,16 +124,41 @@ namespace shortWay
         //赖志卿
         private void Star_Click(object sender, EventArgs e)
         {
-            RRT find = new RRT(pictureBox1, pBegin, pGoal);
-            //thread = new Thread(find.findWay);
-            //thread.Start();
-            //thread.Join();
-            find.findWay();
+            if (pBegin.Equals(p) || pGoal.Equals(p))
+            {
+                MessageBox.Show("请添加起点终点");
+                return;
+            }
+            if (comboBox1.SelectedIndex == 0)
+            {
+                RRT find0 = new RRT(pictureBox1, pBegin, pGoal);
+                Thread thread0 = new Thread(find0.findWay);
+                thread0.Start();
+                //thread2.Join();
+                //find0.findWay();
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                AStar find1 = new AStar(pictureBox1, pBegin, pGoal);
+                Thread thread1 = new Thread(find1.findWay);
+                thread1.Start();
+                //thread2.Join();
+                //find1.findWay();
+            }
+            if (comboBox1.SelectedIndex == 2)
+            {
+                Theta find2 = new Theta(pictureBox1, pBegin, pGoal);
+                Thread thread2 = new Thread(find2.findWay);
+                thread2.Start();
+                //thread2.Join();
+                //find2.findWay();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-             //System.Environment.Exit(0);
+            //this.Close();
+            //System.Environment.Exit(0);
             //Application.ExitThread();
         }
 
@@ -146,5 +172,6 @@ namespace shortWay
             textBoxX.Text = e.X.ToString();
             textBoxY.Text = e.Y.ToString();
         }
+
     }
 }

@@ -73,7 +73,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RRT.cs" />
-    <Compile Include="ThetaStar.cs" />
+    <Compile Include="temp.cs" />
+    <Compile Include="AStar.cs" />
+    <Compile Include="Theta.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MapBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\map4.jpg" />
+    <Content Include="Resources\map4.png" />
+    <Content Include="Resources\timg1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

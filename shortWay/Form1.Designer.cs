@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.clear = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
-            this.stop = new System.Windows.Forms.Button();
             this.star = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.mouse = new System.Windows.Forms.Button();
@@ -52,9 +52,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.clear);
             this.groupBox2.Controls.Add(this.delete);
-            this.groupBox2.Controls.Add(this.stop);
             this.groupBox2.Controls.Add(this.star);
             this.groupBox2.Location = new System.Drawing.Point(609, 330);
             this.groupBox2.Name = "groupBox2";
@@ -62,6 +62,18 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "RRT-Theta",
+            "A*",
+            "Theta"});
+            this.comboBox1.Location = new System.Drawing.Point(24, 56);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(75, 23);
+            this.comboBox1.TabIndex = 11;
             // 
             // clear
             // 
@@ -82,19 +94,9 @@
             this.delete.Text = "删除路径";
             this.delete.UseVisualStyleBackColor = true;
             // 
-            // stop
-            // 
-            this.stop.Location = new System.Drawing.Point(127, 51);
-            this.stop.Name = "stop";
-            this.stop.Size = new System.Drawing.Size(75, 23);
-            this.stop.TabIndex = 1;
-            this.stop.Text = "停止";
-            this.stop.UseVisualStyleBackColor = true;
-            this.stop.Click += new System.EventHandler(this.Stop_Click);
-            // 
             // star
             // 
-            this.star.Location = new System.Drawing.Point(24, 51);
+            this.star.Location = new System.Drawing.Point(127, 56);
             this.star.Name = "star";
             this.star.Size = new System.Drawing.Size(75, 23);
             this.star.TabIndex = 0;
@@ -244,7 +246,6 @@
         private System.Windows.Forms.Button obstacle;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button stop;
         private System.Windows.Forms.Button star;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.Button delete;
@@ -256,6 +257,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBoxX;
         private System.Windows.Forms.TextBox textBoxY;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
