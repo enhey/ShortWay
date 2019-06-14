@@ -69,7 +69,8 @@
             this.comboBox1.Items.AddRange(new object[] {
             "RRT-Theta",
             "A*",
-            "Theta"});
+            "Theta",
+            "PRM"});
             this.comboBox1.Location = new System.Drawing.Point(24, 56);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(75, 23);

@@ -153,6 +153,12 @@ namespace shortWay
                 //thread2.Join();
                 //find2.findWay();
             }
+            if (comboBox1.SelectedIndex == 3)
+            {
+                PRM find3 = new PRM(pictureBox1, pBegin, pGoal);
+                Thread thread2 = new Thread(find3.findWay);
+                thread2.Start();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
