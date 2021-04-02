@@ -7,6 +7,6 @@
 
 ![图片备注](markdownImg/ccc.png)<br><br>
 
-![图片备注](markdownImg/ddd.png)<br><br>
+![图片d](markdownImg/ddd.png)<br><br>
 
 author：赖志卿（江西财经）
