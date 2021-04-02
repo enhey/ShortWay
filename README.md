@@ -5,16 +5,16 @@
 
 ![Alt text](markdwonImg/aaa.gif)<br><br>
 
-![图片备注]("https://github.com/enhey/ShortWay/blob/master/markdownImg/aaa.gif")
+![图片备注](https://github.com/enhey/ShortWay/blob/master/markdownImg/aaa.gif)
 
 
-![图片备注]("markdownImg/bbb.gif")
+![图片备注](markdownImg/bbb.gif)
 
 
-![图片备注]("markdownImg/ccc.png")
+![图片备注](markdownImg/ccc.png)
 
 
-![图片备注]("markdownImg/ddd.png")
+![图片备注](markdownImg/ddd.png)
 
 
 author：赖志卿（江西财经）
